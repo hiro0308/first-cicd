@@ -5,11 +5,7 @@ env:
 jobs:
   hello:
     runs-on: ubuntu-latest
+    env:
+      PASSWORD: ${{ secrets.PASSWORD }}
     steps:
-      - run: echo "hello, world"
-      - run: echo "${BRANCH}"
-      - uses: actions/checkout@v4
-        env:
-          BRANCH: main-override
-        with:
-          ref: ${{ env.BRANCH }}
+      - run: echo "${PASSWORD}"
