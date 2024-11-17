@@ -1,4 +1,4 @@
-name: Test2
+name: Test5
 
 on:
   pull_request:
@@ -17,6 +17,9 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: 1.22.x
+
+      # 依存関係のインストール
+      - run: go mod download
 
       # テストの実行
       - run: go test ./go/excellent/
