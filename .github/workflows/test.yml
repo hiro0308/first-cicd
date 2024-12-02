@@ -1,13 +1,25 @@
-name: Test
+name: Test5
+
 on:
   pull_request:
-    paths: ["go/**/*.go"]
+    paths:
+      - "go/**/*.go"
+
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
+      # リポジトリのチェックアウト
       - uses: actions/checkout@v4
-      - run: actions/setup-go@v5
+
+      # Goのセットアップ
+      - uses: actions/setup-go@v5
         with:
           go-version: 1.22.x
-      - run: go test go/excellent/*.go
+
+      # 依存関係のインストール
+      - run: go mod download
+
+      # テストの実行
+      - run: go test ./go/excellent/
